@@ -25,7 +25,6 @@ use EssentialsPE\Commands\Feed;
 use EssentialsPE\Commands\Extinguish;
 use EssentialsPE\Commands\Fly;
 use EssentialsPE\Commands\GetPos;
-use EssentialsPE\Commands\God;
 use EssentialsPE\Commands\Heal;
 use EssentialsPE\Commands\Home\DelHome;
 use EssentialsPE\Commands\Home\Home;
@@ -150,7 +149,6 @@ class Loader extends PluginBase{
             new Extinguish($this->getAPI()),
             new Fly($this->getAPI()),
             new GetPos($this->getAPI()),
-            new God($this->getAPI()),
             //new Hat($this->getAPI()), TODO: Implement when MCPE implements "Block-Hat rendering"
             new Heal($this->getAPI()),
             new ItemCommand($this->getAPI()),
