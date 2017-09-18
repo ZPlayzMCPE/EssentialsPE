@@ -62,9 +62,9 @@ abstract class BaseCommand extends Command implements PluginIdentifiableCommand{
      * This function can be overridden to fit any command needs...
      *
      * @param CommandSender $sender
-     * @param string $alias
+     * @param $alias
      */
-    public function sendUsage(CommandSender $sender, string $alias){
+    public function sendUsage(CommandSender $sender, $alias){
         $message = TextFormat::RED . "Usage: " . TextFormat::GRAY . "/$alias ";
         if(!$sender instanceof Player){
             if(is_string($this->consoleUsageMessage)){
