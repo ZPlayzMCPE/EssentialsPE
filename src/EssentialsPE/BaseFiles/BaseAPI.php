@@ -6,10 +6,8 @@ namespace EssentialsPE\BaseFiles;
 
 use EssentialsPE\Events\PlayerAFKModeChangeEvent;
 use EssentialsPE\Events\PlayerFlyModeChangeEvent;
-use EssentialsPE\Events\PlayerGodModeChangeEvent;
 use EssentialsPE\Events\PlayerMuteEvent;
 use EssentialsPE\Events\PlayerNickChangeEvent;
-use EssentialsPE\Events\PlayerPvPModeChangeEvent;
 use EssentialsPE\Events\PlayerUnlimitedModeChangeEvent;
 use EssentialsPE\Events\PlayerVanishEvent;
 use EssentialsPE\Events\SessionCreateEvent;
@@ -812,52 +810,7 @@ class BaseAPI{
             $this->serverGeoLocation = $location;
         }
     }
-
-    /**   _____           _
-     *   / ____|         | |
-     *  | |  __  ___   __| |
-     *  | | |_ |/ _ \ / _` |
-     *  | |__| | (_) | (_| |
-     *   \_____|\___/ \__,_|
-     */
-
-    /**
-     * Tell if a player is in God Mode
-     *
-     * @param Player $player
-     *
-     * @return bool
-     */
-    public function isGod(Player $player): bool{
-        return $this->getSession($player)->isGod();
-    }
-
-    /**
-     * Set the God Mode on or off
-     *
-     * @param Player $player
-     * @param bool $state
-     *
-     * @return bool
-     */
-    public function setGodMode(Player $player, bool $state): bool{
-        $this->getServer()->getPluginManager()->callEvent($ev = new PlayerGodModeChangeEvent($this, $player, $state));
-        if($ev->isCancelled()){
-            return false;
-        }
-        $this->getSession($player)->setGod($ev->getGodMode());
-        return true;
-    }
-
-    /**
-     * Switch God Mode on/off automatically
-     *
-     * @param Player $player
-     */
-    public function switchGodMode(Player $player): void{
-        $this->setGodMode($player, !$this->isGod($player));
-    }
-
+   
     /**  _    _
      *  | |  | |
      *  | |__| | ___  _ __ ___   ___ ___
@@ -1698,51 +1651,7 @@ class BaseAPI{
      */
     public function disablePowerTool(Player $player): void{
         $this->getSession($player)->disablePowerTool();
-    }
-
-    /**  _____        _____
-     *  |  __ \      |  __ \
-     *  | |__) __   _| |__) |
-     *  |  ___/\ \ / |  ___/
-     *  | |     \ V /| |
-     *  |_|      \_/ |_|
-     */
-
-    /**
-     * Tell if the PvP mode is enabled for the specified player, or not
-     *
-     * @param Player $player
-     *
-     * @return bool
-     */
-    public function isPvPEnabled(Player $player): bool{
-        return $this->getSession($player)->isPVPEnabled();
-    }
-
-    /**
-     * Set the PvP mode on or off
-     *
-     * @param Player $player
-     * @param bool $state
-     *
-     * @return bool
-     */
-    public function setPvP(Player $player, bool $state): bool{
-        $this->getServer()->getPluginManager()->callEvent($ev = new PlayerPvPModeChangeEvent($this, $player, $state));
-        if($ev->isCancelled()){
-            return false;
-        }
-        $this->getSession($player)->setPvP($ev->getPvPMode());
-        return true;
-    }
-
-    /**
-     * Switch the PvP mode on/off automatically
-     *
-     * @param Player $player
-     */
-    public function switchPvP(Player $player): void{
-        $this->setPvP($player, !$this->isPvPEnabled($player));
+	    
     }
 
     /**   _____              _
