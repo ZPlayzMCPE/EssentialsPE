@@ -32,7 +32,7 @@ class GeoLocation extends AsyncTask{
         }
     }
 
-    public function onRun(): void{
+    public function onRun(){
         if($this->player === null){
             $data = Utils::getURL("http://ip-api.com/json/");
             $this->setResult(json_decode($data, true)["country"] ?? "Unknown");
@@ -55,7 +55,7 @@ class GeoLocation extends AsyncTask{
     /**
      * @param Server $server
      */
-    public function onCompletion(Server $server): void{
+    public function onCompletion(Server $server){
         /** @var Loader $plugin */
         $plugin = $server->getPluginManager()->getPlugin("EssentialsPE");
         if(!is_array($this->getResult())){
