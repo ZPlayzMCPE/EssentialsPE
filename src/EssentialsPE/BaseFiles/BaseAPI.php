@@ -76,7 +76,7 @@ class BaseAPI{
         $this->getServerGeoLocation();
     }
 
-    public function close(): void{
+    public function close(){
         $this->encodeWarps(true);
     }
 
@@ -189,7 +189,7 @@ class BaseAPI{
     /**
      * @param bool $save
      */
-    private final function encodeWarps(bool $save = false): void{
+    private final function encodeWarps(bool $save = false){
         $warps = [];
         foreach($this->warps as $name => $object){
             if($object instanceof BaseLocation){
@@ -286,7 +286,7 @@ class BaseAPI{
      * @param Player $player
      * @param bool $broadcast
      */
-    public function switchAFKMode(Player $player, bool $broadcast = true): void{
+    public function switchAFKMode(Player $player, bool $broadcast = true){
         $this->setAFKMode($player, !$this->isAFK($player), $broadcast);
     }
 
@@ -355,7 +355,7 @@ class BaseAPI{
      * @param Player $player
      * @return null|Location
      */
-    public function getLastPlayerPosition(Player $player): ?Location{
+    public function getLastPlayerPosition(Player $player): Location{
         return $this->getSession($player)->getLastPosition();
     }
 
@@ -681,7 +681,7 @@ class BaseAPI{
      * @param Position|Player $pos
      * @param int $damage
      */
-    public function strikeLightning(Position $pos, int $damage = 0): void{
+    public function strikeLightning(Position $pos, int $damage = 0){
         $pk = $this->lightning($pos);
         foreach($pos->getLevel()->getPlayers() as $p){
             $p->dataPacket($pk);
@@ -839,7 +839,7 @@ class BaseAPI{
      *
      * @return null|BaseLocation
      */
-    public function getHome(Player $player, string $home): ?BaseLocation{
+    public function getHome(Player $player, string $home): BaseLocation{
         return $this->getSession($player)->getHome($home);
     }
 
@@ -1028,7 +1028,7 @@ class BaseAPI{
      * @param Item $item
      * @return Item|null
      */
-    private function condenseRecipes(Item $item): ?Item{
+    private function condenseRecipes(Item $item): Item{
         if(isset($this->condenseShapes[0][$item->getId()])){ // 2x2 Shapes
             $shape = 4;
         }elseif(isset($this->condenseShapes[1][$item->getId()])){ // 3x3 Shapes
@@ -1090,7 +1090,7 @@ class BaseAPI{
      * @param string $kit
      * @return bool|BaseKit
      */
-    public function getKit(string $kit): ?BaseKit{
+    public function getKit(string $kit): BaseKit{
         if(!$this->kitExists($kit)){
             return null;
         }
@@ -1151,7 +1151,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function colorMessage(string $message, Player $player = null, bool $force = false): ?string{
+    public function colorMessage(string $message, Player $player = null, bool $force = false): string{
         $message = preg_replace_callback(
             "/(\\\&|\&)[0-9a-fk-or]/",
             function(array $matches){
@@ -1213,7 +1213,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function getQuickReply(CommandSender $sender): ?string{
+    public function getQuickReply(CommandSender $sender): string{
         if($sender instanceof Player){
             $q = $this->getSession($sender)->getQuickReply();
         }else{
@@ -1335,7 +1335,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function getNick(Player $player): ?string{
+    public function getNick(Player $player): string{
         return $this->getSession($player)->getNick();
     }
 
@@ -1396,7 +1396,7 @@ class BaseAPI{
      *
      * @return null|Player
      */
-    public function getPlayer($player): ?Player{
+    public function getPlayer($player): Player{
         if(!$this->validateName($player, false)){
             return null;
         }
@@ -1459,7 +1459,7 @@ class BaseAPI{
      *
      * @return null|Player[]
      */
-    public function getNearPlayers(Player $player, int $radius = null): ?array{
+    public function getNearPlayers(Player $player, int $radius = null): array{
         if($radius === null || !is_numeric($radius)){
             $radius = $this->getEssentialsPEPlugin()->getConfig()->get("near-default-radius");
         }
@@ -1566,7 +1566,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function getPowerToolItemCommand(Player $player, Item $item): ?string{
+    public function getPowerToolItemCommand(Player $player, Item $item): string{
         return $this->getSession($player)->getPowerToolItemCommand($item->getId());
     }
 
@@ -1592,7 +1592,7 @@ class BaseAPI{
      *
      * @return null|array
      */
-    public function getPowerToolItemCommands(Player $player, Item $item): ?array{
+    public function getPowerToolItemCommands(Player $player, Item $item): array{
         return $this->getSession($player)->getPowerToolItemCommands($item->getId());
     }
 
@@ -1629,7 +1629,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function getPowerToolItemChatMacro(Player $player, Item $item): ?string{
+    public function getPowerToolItemChatMacro(Player $player, Item $item): string{
         return $this->getSession($player)->getPowerToolItemChatMacro($item->getId());
     }
 
@@ -1828,7 +1828,7 @@ class BaseAPI{
      *
      * @return array|null
      */
-    public function stringToTimestamp(string $string): ?array{
+    public function stringToTimestamp(string $string): array{
         /**
          * Rules:
          * Integers without suffix are considered as seconds
@@ -1894,7 +1894,7 @@ class BaseAPI{
      *
      * @return null|array
      */
-    public function hasARequest(Player $player): ?array{
+    public function hasARequest(Player $player): array{
         return $this->getSession($player)->hasARequest();
     }
 
@@ -1910,7 +1910,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function hasARequestFrom(Player $target, Player $requester): ?string{
+    public function hasARequestFrom(Player $target, Player $requester): string{
         return $this->getSession($target)->hasARequestFrom($requester->getName());
     }
 
@@ -1921,7 +1921,7 @@ class BaseAPI{
      *
      * @return null|string
      */
-    public function getLatestRequest(Player $player): ?string{
+    public function getLatestRequest(Player $player): string{
         return $this->getSession($player)->getLatestRequestFrom();
     }
 
@@ -1936,7 +1936,7 @@ class BaseAPI{
      *
      * @return array|null
      */
-    public function madeARequest(Player $player): ?array{
+    public function madeARequest(Player $player): array{
         return $this->getSession($player)->madeARequest();
     }
 
@@ -2354,7 +2354,7 @@ class BaseAPI{
      * @param string $warp
      * @return null|BaseLocation
      */
-    public function getWarp(string $warp): ?BaseLocation{
+    public function getWarp(string $warp): BaseLocation{
         if(!$this->warpExists($warp)){
             return null;
         }
