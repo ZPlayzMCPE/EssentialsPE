@@ -85,7 +85,7 @@ class Loader extends PluginBase{
     /** @var BaseAPI */
     private $api;
 
-    public function onEnable(): void{
+    public function onEnable(){
         if($this->getConfig()->get("enable") === false) {
            $this->setEnabled(false);
         }
@@ -124,7 +124,7 @@ class Loader extends PluginBase{
     /**
      * Function to register all the Event Handlers that EssentialsPE provide
      */
-    public function registerEvents(): void{
+    public function registerEvents(){
         $this->getServer()->getPluginManager()->registerEvents(new OtherEvents($this->getAPI()), $this);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEvents($this->getAPI()), $this);
         $this->getServer()->getPluginManager()->registerEvents(new SignEvents($this->getAPI()), $this);
@@ -134,7 +134,7 @@ class Loader extends PluginBase{
      * Function to register all EssentialsPE's commands...
      * And to override some default ones
      */
-    private function registerCommands(): void{
+    private function registerCommands(){
         $commands = [
             new AFK($this->getAPI()),
             new Antioch($this->getAPI()),
@@ -282,7 +282,7 @@ class Loader extends PluginBase{
         $this->getServer()->getCommandMap()->registerAll("EssentialsPE", $commands);
     }
 
-    public function checkConfig(): void{
+    public function checkConfig(){
         if(!is_dir($this->getDataFolder())){
             mkdir($this->getDataFolder());
         }
