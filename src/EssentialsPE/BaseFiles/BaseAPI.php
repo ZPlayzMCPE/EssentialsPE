@@ -307,7 +307,7 @@ class BaseAPI{
      * @param Player $player
      * @return int|null
      */
-    public function getLastPlayerMovement(Player $player): ?int{
+    public function getLastPlayerMovement(Player $player): int{
         return $this->getSession($player)->getLastMovement();
     }
 
