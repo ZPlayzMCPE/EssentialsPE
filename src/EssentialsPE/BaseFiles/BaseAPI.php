@@ -621,7 +621,7 @@ class BaseAPI{
      *
      * @return null|Entity
      */
-    public function createEntity(string $type, Vector3 $pos, Level $level = null, CompoundTag $nbt = null): ?Entity{
+    public function createEntity(string $type, Vector3 $pos, Level $level = null, CompoundTag $nbt = null): Entity{
         if($level === null){
             if($pos instanceof Position){
                 $level = $pos->getLevel();
@@ -649,7 +649,7 @@ class BaseAPI{
      *
      * @return null|PrimedTNT
      */
-    public function createTNT(Vector3 $pos, Level $level = null, $spawn = true): ?PrimedTNT{
+    public function createTNT(Vector3 $pos, Level $level = null, $spawn = true): PrimedTNT{
         $mot = (new Random())->nextSignedFloat() * M_PI * 2;
         $entity = $this->createEntity("PrimedTNT", $pos, $level, new CompoundTag("EssPE", [
             "Pos" => new ListTag("Pos", [
@@ -780,7 +780,7 @@ class BaseAPI{
      *
      * @return string|null
      */
-    public function getGeoLocation(Player $player): ?string{
+    public function getGeoLocation(Player $player): string{
         return $this->getSession($player)->getGeoLocation();
     }
 
