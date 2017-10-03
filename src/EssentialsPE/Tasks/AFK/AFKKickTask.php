@@ -25,7 +25,7 @@ class AFKKickTask extends BaseTask{
     /**
      * @param int $currentTick
      */
-    public function onRun(int $currentTick): void{
+    public function onRun(int $currentTick){
         // TODO: Remember access to API for tasks...
         $this->getAPI()->getServer()->getLogger()->debug(TextFormat::YELLOW . "Running EssentialsPE's AFKKickTask");
         if($this->player instanceof Player && $this->player->isOnline() && $this->getAPI()->isAFK($this->player) && !$this->player->hasPermission("essentials.afk.kickexempt") && time() - $this->getAPI()->getLastPlayerMovement($this->player) >= $this->getAPI()->getEssentialsPEPlugin()->getConfig()->getNested("afk.auto-set")){
