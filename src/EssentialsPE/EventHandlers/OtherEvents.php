@@ -15,7 +15,7 @@ class OtherEvents extends BaseEventHandler{
     /**
      * @param ServerCommandEvent $event
      */
-    public function onServerCommand(ServerCommandEvent $event): void{
+    public function onServerCommand(ServerCommandEvent $event){
         $command = $this->getAPI()->colorMessage($event->getCommand());
         if($command === false){
             $event->setCancelled(true);
@@ -26,7 +26,7 @@ class OtherEvents extends BaseEventHandler{
     /**
      * @param EntityExplodeEvent $event
      */
-    public function onTNTExplode(EntityExplodeEvent $event): void{
+    public function onTNTExplode(EntityExplodeEvent $event){
         if($event->getEntity()->namedtag->getName() === "EssPE"){
             $event->setBlockList([]);
         }
@@ -37,7 +37,7 @@ class OtherEvents extends BaseEventHandler{
      *
      * @priority HIGH
      */
-    public function onBlockTap(PlayerInteractEvent $event): void{// PowerTool
+    public function onBlockTap(PlayerInteractEvent $event){// PowerTool
         if($this->getAPI()->executePowerTool($event->getPlayer(), $event->getItem())){
             $event->setCancelled(true);
         }
@@ -48,7 +48,7 @@ class OtherEvents extends BaseEventHandler{
      *
      * @priority HIGH
      */
-    public function onBlockPlace(BlockPlaceEvent $event): void{
+    public function onBlockPlace(BlockPlaceEvent $event){
         // PowerTool
         if($this->getAPI()->executePowerTool($event->getPlayer(), $event->getItem())){
             $event->setCancelled(true);
